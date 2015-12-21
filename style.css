@@ -58,6 +58,10 @@ section {
   float: left;
 }
 
+.control {
+  background-color: #727272;
+}
+
 .option-box {
   float: left;
 }
