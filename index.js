@@ -15,8 +15,11 @@ $(function(){
     var vy = 0;
 
     //衝突係数
-    var k = 0.8;
+    var k = 1;
     // var k = 0.8;
+
+    //画面の上端
+    var topY;
 
     //画面の下端
     var bottomY;
@@ -29,9 +32,14 @@ $(function(){
 
     var init = function(){
 
+
         //画面の端を設定
-        bottomY = $(window).height()*.5 - $(".ball").height()*.5;
-        rightX = $(window).width()*.5 - $(".ball").width()*.5;
+        topY = 0 + $(".ball").height()*.5;
+
+        bottomY = $("#wrap").height() - $(".ball").height()*.5;
+        // bottomY = $(window).height()*.5 - $(".ball").height()*.5;
+        rightX = $("#wrap").width() - $(".ball").width()*.5;
+        // rightX = $(window).width()*.5 - $(".ball").width()*.5;
         leftX = $(".ball").width()*.5;
 
         //Ballインスタンスを作成
@@ -39,8 +47,9 @@ $(function(){
 
         //初期座標を設定
         ball.x = 50;
-        ball.y = 10;
-        vx = 7;
+        ball.y = 20;
+        // ball.y = 10;
+        vx = 10;
 
         //座標を画面表示に反映
         ball.updatePosition();
@@ -75,6 +84,10 @@ $(function(){
         if(ball.y > bottomY){
             //下端にボールが衝突した場合
             ball.y = bottomY - (ball.y - bottomY)*k;
+            vx = vx * k;
+            vy = -vy * k;
+        }else if(ball.y < topY){
+            ball.y = topY - (ball.y - topY)*k;
             vx = vx * k;
             vy = -vy * k;
         }
@@ -127,12 +140,15 @@ $(function(){
     document.getElementById('click_me').addEventListener('click', init, false);
     // document.getElementById('click_me2').addEventListener('click', init0, false);
     document.getElementById('click_me2').addEventListener('click', stopAnime, false);
+    document.getElementById('click_me3').addEventListener('click', startAnime, false);
     // $("#click_me").addEventListener('click', init, false);
 
     var basyo = function() {
         // document.getElementById("form").innerHTML = "a";
-        document.getElementById("form1").innerHTML = ball.x;
-        document.getElementById("form2").innerHTML = ball.y;
+        if (ball.x !== undefined) {
+         document.getElementById("form1").innerHTML = Math.floor(ball.x);
+        }
+        document.getElementById("form2").innerHTML = Math.floor(ball.y);
     };
 
     setInterval( basyo, 10);
