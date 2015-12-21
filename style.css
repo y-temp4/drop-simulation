@@ -6,19 +6,53 @@
 
 body {
   background: #fff;
+  color: #212121;
+  width: 100%;
+  height: auto;
 }
+
 .ball{
-    background:#000;
-    width:40px; height:40px;
-    border-radius:20px;
+    background-color: #212121;
+    width:40px;
+    height:40px;
+    border-radius: 20px;
+    /*border: 10px solid #303F9F;*/
     margin:-20px -20px;
     position:absolute;
     display:none;
+    box-sizing: border-box;
 }
 
-#wrap {
-  width: 500px;
-  height: 300px;
+.wrap {
+  width: 800px;
+  height: 500px;
+  margin: 30px auto;
+  border: 2px solid #212121;
+  box-sizing: border-box;
+}
+
+.control {
+  background-color: #727272;
+}
+
+.button-box {
+  width: 800px;
+  text-align: center;
   margin: 0 auto;
-  border: 2px solid;
+}
+
+.button {
+  width: 100px;
+  height: 50px;
+  margin-right: 20px;
+  padding: 5px 20px;
+  color: white;
+  background-color: #3F51B5;
+  line-height: 3em;
+  transition-duration: 0.3s;
+  float: left;
+}
+
+p {
+  margin-top: 10px;
 }

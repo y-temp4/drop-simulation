@@ -36,9 +36,9 @@ $(function(){
         //画面の端を設定
         topY = 0 + $(".ball").height()*.5;
 
-        bottomY = $("#wrap").height() - $(".ball").height()*.5;
+        bottomY = $(".wrap").height() - $(".ball").height()*.5;
         // bottomY = $(window).height()*.5 - $(".ball").height()*.5;
-        rightX = $("#wrap").width() - $(".ball").width()*.5;
+        rightX = $(".wrap").width() - $(".ball").width()*.5;
         // rightX = $(window).width()*.5 - $(".ball").width()*.5;
         leftX = $(".ball").width()*.5;
 
@@ -130,41 +130,56 @@ $(function(){
         return instance;
     };
 
-    var init0 = function() {
+    var isStartedDemo = false;
+
+    var startDemo = function() {
+        if ( isStartedDemo === false ) {
+            isStartedDemo = true;
+            $(".control").css(
+                'background', '#D32F2F'
+                );
+            $("#start_demo").text('再スタート');
+        }
         vx = 10;
         vy = 0;
-        stopAnime();
-        init();
-        // ball.x = 0;
-        // ball.y = 0;
-        // vx = 0;
-        // vy = 0;
+
+        if ( $(".control").text() === 'とめる' ) {
+            stopAnime();
+            init();
+        }
+        setInterval( basyo, 15);
+
     }
 
-    var reset = function() {
-        ball.x = 50;
-        ball.y = 20;
-    }
+    $("#start_demo").on('click', startDemo);
 
-    // init();
-    document.getElementById('click_me').addEventListener('click', init, false);
-    // document.getElementById('click_me2').addEventListener('click', init0, false);
-    document.getElementById('click_me2').addEventListener('click', stopAnime, false);
-    document.getElementById('click_me3').addEventListener('click', startAnime, false);
-    document.getElementById('click_me4').addEventListener('click', init0, false);
-
-    document.getElementById('click_me5').addEventListener('click', reset, false);
-
-    // $("#click_me").addEventListener('click', init, false);
+    $(".control").on('click', function() {
+        if ( isStartedDemo === true ) {
+            if ( $(".control").text() === 'うごかす' ) {
+                startAnime();
+                $(".control").css(
+                    'background', '#D32F2F'
+                    );
+                $("#start_demo").css(
+                    'background', '#3F51B5'
+                    );
+                $(".control").text('とめる');
+            }
+            else if ( $(".control").text() === 'とめる' ) {
+                $(".control").text('うごかす');
+                $(".control").css(
+                    'background', '#3F51B5'
+                    );
+                $("#start_demo").css(
+                    'background', '#727272'
+                    );
+                stopAnime();
+            }
+        }
+    });
 
     var basyo = function() {
-        // document.getElementById("form").innerHTML = "a";
-        if (ball.x !== undefined) {
-         document.getElementById("form1").innerHTML = Math.floor(ball.x);
-        }
-        document.getElementById("form2").innerHTML = Math.floor(ball.y);
+        document.getElementById("form1").innerHTML = Math.floor(ball.x - 25);
+        document.getElementById("form2").innerHTML = Math.floor(500 - ball.y - 20);
     };
-
-    setInterval( basyo, 10);
-
 });
