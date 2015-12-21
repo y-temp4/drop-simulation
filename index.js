@@ -59,6 +59,7 @@ $(function(){
 
         //アニメーション開始
         startAnime();
+
     };
 
 
@@ -130,10 +131,19 @@ $(function(){
     };
 
     var init0 = function() {
-        ball.x = 0;
-        ball.y = 0;
-        vx = 0;
+        vx = 10;
         vy = 0;
+        stopAnime();
+        init();
+        // ball.x = 0;
+        // ball.y = 0;
+        // vx = 0;
+        // vy = 0;
+    }
+
+    var reset = function() {
+        ball.x = 50;
+        ball.y = 20;
     }
 
     // init();
@@ -141,6 +151,10 @@ $(function(){
     // document.getElementById('click_me2').addEventListener('click', init0, false);
     document.getElementById('click_me2').addEventListener('click', stopAnime, false);
     document.getElementById('click_me3').addEventListener('click', startAnime, false);
+    document.getElementById('click_me4').addEventListener('click', init0, false);
+
+    document.getElementById('click_me5').addEventListener('click', reset, false);
+
     // $("#click_me").addEventListener('click', init, false);
 
     var basyo = function() {
