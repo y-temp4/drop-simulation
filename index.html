@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<title>forked: 物理シミュレーション　落下 - js do it</title>
-<meta name="Description" content="" />
-<meta name="Keywords"  content="" />
-
-<link rel="stylesheet" type="text/css" media="screen,print" href="style.css" />
+  <meta charset="UTF-8">
+  <title>forked: 物理シミュレーション　落下 - js do it</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="wrap">
-	<p class="ball"></p>
-</div>
+  <div class="wrap">
+    <p class="ball"></p>
+  </div>
 
-<div class="button-box">
-	<div id="start_demo" class="button">スタート</div>
-	<div class="control button">とめる</div>
-</div>
+  <section>
+    <div class="button-box">
+      <div id="start_demo" class="button">スタート</div>
+      <div class="control button">とめる</div>
+    </div>
 
-<p>X軸：<span id="form1">0</span></p>
-<p>Y軸：<span id="form2">0</span></p>
+    <div class="option-box">
+      <div class="axis-box">
+        <p>X軸：<span id="form1">0</span></p>
+        <p>Y軸：<span id="form2">0</span></p>
+      </div>
 
-<!-- <script type="text/javascript" src="http://jsdo.it/lib/jquery-2.1.0/js"></script> -->
-<script src="jquery-2.1.0.js"></script>
-<script type="text/javascript" src="index.js"></script>
+      <div class="default-set-box">
+        <p>衝突係数：<input type="text" id="rebound_coefficient"></p>
+<!--         <p>初期速度：<input type="text" id="initial_velocity"></p>
+        <p>重力加速度：<input type="text" id="gravity_acceleration"></p> -->
+      </div>
+    </div>
+  </section>
+
+  <script src="jquery-2.1.0.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>

@@ -6,7 +6,6 @@ $(function(){
 
     var interval;
 
-
     //重量加速度
     var g = 0.08;
 
@@ -15,8 +14,7 @@ $(function(){
     var vy = 0;
 
     //衝突係数
-    var k = 1;
-    // var k = 0.8;
+    var k = 0.8;
 
     //画面の上端
     var topY;
@@ -31,7 +29,6 @@ $(function(){
     var leftX;
 
     var init = function(){
-
 
         //画面の端を設定
         topY = 0 + $(".ball").height()*.5;
@@ -147,9 +144,8 @@ $(function(){
             stopAnime();
             init();
         }
-        setInterval( basyo, 15);
-
-    }
+        setInterval( objectPosition, 15);
+    };
 
     $("#start_demo").on('click', startDemo);
 
@@ -178,8 +174,35 @@ $(function(){
         }
     });
 
-    var basyo = function() {
-        document.getElementById("form1").innerHTML = Math.floor(ball.x - 25);
-        document.getElementById("form2").innerHTML = Math.floor(500 - ball.y - 20);
+    // 物体のX軸、Y軸での位置を特定
+    var objectPosition = function() {
+        $("#form1").text(Math.floor( ball.x - 20 ));
+        $("#form2").text(Math.floor( 500 - ball.y - 20 ));
     };
+
+    // 各種値の初期値を設定し、インプットフォームに入れる
+    var setDefaultValue = function(id, value) {
+        $( '#' + id ).val(value);
+    };
+
+    // 衝突径数を設定
+    setDefaultValue("rebound_coefficient", k);
+    $('#rebound_coefficient').change( function() {
+        k = $('#rebound_coefficient').val();
+    } );
+
+
+    // ここから未実装
+
+    // 初期速度を設定
+    // setDefaultValue("initial_velocity", vx);
+    // $('#initial_velocity').change( function() {
+    //     vx = $('#initial_velocity').val();
+    // } );
+
+    // 重力加速度を設定
+    // setDefaultValue("gravity_acceleration", g);
+    // $('#gravity_acceleration').change( function() {
+    //     g = $('#gravity_acceleration').val();
+    // } );
 });
